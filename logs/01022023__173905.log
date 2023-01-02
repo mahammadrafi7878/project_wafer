@@ -1,0 +1,16 @@
+[2023-01-02 17:39:06,416] 20 root INFO exporting collection data as pandas dataframe
+[2023-01-02 17:39:06,416] 10 root INFO reading from databaseaps qand collection :sensor
+[2023-01-02 17:39:09,753] 12 root INFO found columns:Index(['_id', 'class', 'aa_000', 'ab_000', 'ac_000', 'ad_000', 'ae_000',
+       'af_000', 'ag_000', 'ag_001',
+       ...
+       'ee_002', 'ee_003', 'ee_004', 'ee_005', 'ee_006', 'ee_007', 'ee_008',
+       'ee_009', 'ef_000', 'eg_000'],
+      dtype='object', length=172)
+[2023-01-02 17:39:09,754] 14 root INFO dropping _id column
+[2023-01-02 17:39:09,965] 24 root INFO save data in feature store,replacing null values with nan
+[2023-01-02 17:39:10,615] 27 root INFO creating feature store folder if not available
+[2023-01-02 17:39:10,615] 31 root INFO save df to feature store folder
+[2023-01-02 17:39:13,065] 34 root INFO spliting data into train test split
+[2023-01-02 17:39:13,598] 37 root INFO creating dataset directory if not available
+[2023-01-02 17:39:13,598] 41 root INFO save df to feature store folder
+[2023-01-02 17:39:15,811] 46 root INFO preparing artifact

@@ -1,0 +1,17 @@
+[2023-01-02 17:40:21,670] 20 root INFO exporting collection data as pandas dataframe
+[2023-01-02 17:40:21,670] 10 root INFO reading from databaseaps qand collection :sensor
+[2023-01-02 17:40:25,067] 12 root INFO found columns:Index(['_id', 'class', 'aa_000', 'ab_000', 'ac_000', 'ad_000', 'ae_000',
+       'af_000', 'ag_000', 'ag_001',
+       ...
+       'ee_002', 'ee_003', 'ee_004', 'ee_005', 'ee_006', 'ee_007', 'ee_008',
+       'ee_009', 'ef_000', 'eg_000'],
+      dtype='object', length=172)
+[2023-01-02 17:40:25,067] 14 root INFO dropping _id column
+[2023-01-02 17:40:25,271] 24 root INFO save data in feature store,replacing null values with nan
+[2023-01-02 17:40:25,879] 27 root INFO creating feature store folder if not available
+[2023-01-02 17:40:25,879] 31 root INFO save df to feature store folder
+[2023-01-02 17:40:28,333] 34 root INFO spliting data into train test split
+[2023-01-02 17:40:28,835] 37 root INFO creating dataset directory if not available
+[2023-01-02 17:40:28,836] 41 root INFO save df to feature store folder
+[2023-01-02 17:40:31,106] 46 root INFO preparing artifact
+[2023-01-02 17:40:31,107] 53 root INFO data ingestion artifact:DataIngestionArtifact(feature_store_file_path='/config/workspace/artifact/01022023__174021/data_ingestion/feature_store/sensor.csv', train_file_path='/config/workspace/artifact/01022023__174021/data_ingestion/dataset/train.csv', test_file_path='/config/workspace/artifact/01022023__174021/data_ingestion/dataset/test.csv')
