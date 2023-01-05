@@ -4,6 +4,8 @@ import json
 from dataclasses import dataclass
 import os 
 
+TARGET_COLUMN="class"
+
 
 @dataclass 
 class EnvironmentVariable:
