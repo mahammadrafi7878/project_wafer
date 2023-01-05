@@ -1,4 +1,4 @@
-from sensor.entity import config_entity,artifact_entity 
+from sensor.entity import artifact_entity,config_entity
 from sensor.logger import logging
 from sensor.exception import SensorException 
 from scipy.stats import ks_2samp 
@@ -26,9 +26,9 @@ class DataValidation:
     def drop_missing_values_columns(self,df,report_key_name):
         try:
             threshold=self.data_validation_config.missing_threshold
-            null_report=df.isna().sum()/df.shpe[0]
+            null_report=df.isna().sum()/df.shape[0]
             logging.info(f"selecting column nane which containing null above {threshold}")
-            drop_column_names=null.report[null_report>threshold].index
+            drop_column_names=null_report[null_report>threshold].index
 
             logging.info(f"column names to drop{list(drop_column_names)}")
             self.validation_error[report_key_name]=list(drop_column_names)
@@ -41,13 +41,12 @@ class DataValidation:
             raise SensorException(e, sys)  
 
 
-    def is_required_columns_exists(self,base_df,current_df,report_key_name):
+    def is_required_columns_exists(self,base_df:pd.DataFrame,current_df:pd.DataFrame,report_key_name):
         try:
-            base_columns=base_df.columns
-            current_columns=current_df.columns 
-
-            missing_columns=[]
-            for base_column in base_columns:
+           base_columns = base_df.columns
+           current_columns = current_df.columns
+           missing_columns=[]
+           for base_column in base_columns:
                 if base_column not in current_columns:
                     logging.info(f"columns:[{base} is not available")
                     missing_columns.append(base_column)
@@ -62,7 +61,7 @@ class DataValidation:
 
     def data_drift(self,base_df,current_df,report_key_name):
         try:
-            drift_report-=dict() 
+            drift_report=dict() 
             base_columns=base_df.columns
             current_columns=current_df.columns
 
@@ -92,47 +91,45 @@ class DataValidation:
 
 
 
-    def initiate_data_validation(self):
+    def initiate_data_validation(self)->artifact_entity.DataValidationArtifact:
         try:
             logging.info(f"Reading base dataframe")
-            base_df=pd.read_csv(self.data_validation_config.base_file_path)
-            base_df.replce({"na":np.NAN},inplace=True)
-            logging.info(f"rep;aced na values with nan")
+            base_df = pd.read_csv(self.data_validation_config.base_file_path)
+            base_df.replace({"na":np.NAN},inplace=True)
+            logging.info(f"Replace na value in base df")
+            #base_df has na as null
+            logging.info(f"Drop null values colums from base df")
+            base_df=self.drop_missing_values_columns(df=base_df,report_key_name="missing_values_within_base_dataset")
 
-            logging.info(f"drop null values columns from base df")
-            base_df=self.drop_missing_values_columns(df=base_df, report_key_name="missing_values_within_base_dataset")
-            
             logging.info((f"reading train dataframe"))
-            train_df=pd.read_csv(self.data_validation_config.train_file_path)
+            train_df=pd.read_csv(self.data_ingestion_artifact.train_file_path)
             logging.info(f"reading test dataframe")
-            test_df=pd.read_csv(self.data_validation_config.test_file_path) 
+            test_df=pd.read_csv(self.data_ingestion_artifact.test_file_path) 
 
             logging.info(f"dropping null vakluecolumns from  train df")
             train_df=self.drop_missing_values_columns(df=train_df, report_key_name="missing_values_within_train_dataset")
             logging.info(f"dropping missing value columns in test dataset")
             test_df=self.drop_missing_values_columns(df=test_df, report_key_name="missing_values_within_test_dataset") 
 
-            exclude_columns=["class"]
-            base_df=utils.convert_columns_float(df=base_df, exclude_columns=exclude_columns)
-            train_df=utils.convert_columns_float(df=train_df, exclude_columns=exclude_columns)
-            test_df=utils.convert_columns_float(df=test-df, exclude_columns=exclude_columns)
+            exclude_columns = ["class"]
+            base_df = utils.convert_columns_float(df=base_df, exclude_columns=exclude_columns)
+            train_df = utils.convert_columns_float(df=train_df, exclude_columns=exclude_columns)
+            test_df = utils.convert_columns_float(df=test_df, exclude_columns=exclude_columns)
 
 
 
-            logging.info(f"is all required columns present in train df")
-            train_df_column_status=self.is_required_columns_exists(base_df=base_df, current_df=train_df, report_key_name="missing_columns_within_train_dataset")
-            logging.info(f"is required columns exisy in test df")
-            test_df_column_status=self.is_required_columns_exists(base_df=base_df, current_df=test_df, report_key_name="missing_columns_within_test_dataset")
 
-            if train_df_column_status:
-                logging.info("if all required columns are present in train df checkinhgh for data drift")
-                self.data_drift(base_df=base_df, current_df=train_df, report_key_name="data_drift_within_train_dataset")
+            logging.info(f"Is all required columns present in train df")
+            train_df_columns_status = self.is_required_columns_exists(base_df=base_df, current_df=train_df,report_key_name="missing_columns_within_train_dataset")
+            logging.info(f"Is all required columns present in test df")
+            test_df_columns_status = self.is_required_columns_exists(base_df=base_df, current_df=test_df,report_key_name="missing_columns_within_test_dataset")
 
-            if test_df_column_status:
-                logging.info(f"if all required columns are exist in test df then checking for data drift")
-                self.data_drift(base_df=base_df, current_df=test_df, report_key_name="data_drift_within_test_dataset")
-
-
+            if train_df_columns_status:
+                logging.info(f"As all column are available in train df hence detecting data drift")
+                self.data_drift(base_df=base_df, current_df=train_df,report_key_name="data_drift_within_train_dataset")
+            if test_df_columns_status:
+                logging.info(f"As all column are available in test df hence detecting data drift")
+                self.data_drift(base_df=base_df, current_df=test_df,report_key_name="data_drift_within_test_dataset")
 
             logging.info("Write reprt in yaml file")
             utils.write_yaml_file(file_path=self.data_validation_config.report_file_path,

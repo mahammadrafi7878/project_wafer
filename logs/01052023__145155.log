@@ -1,0 +1,7 @@
+[2023-01-05 14:51:56,267] 20 root INFO exporting collection data as pandas dataframe
+[2023-01-05 14:51:56,267] 12 root INFO reading from databaseaps qand collection :sensor
+[2023-01-05 14:51:56,270] 14 root INFO found columns:Index([], dtype='object')
+[2023-01-05 14:51:56,271] 24 root INFO save data in feature store,replacing null values with nan
+[2023-01-05 14:51:56,271] 27 root INFO creating feature store folder if not available
+[2023-01-05 14:51:56,271] 31 root INFO save df to feature store folder
+[2023-01-05 14:51:56,273] 34 root INFO spliting data into train test split

@@ -1,0 +1,49 @@
+[2023-01-05 15:41:45,568] 20 root INFO exporting collection data as pandas dataframe
+[2023-01-05 15:41:45,569] 12 root INFO reading from databaseaps qand collection :sensor
+[2023-01-05 15:41:49,023] 14 root INFO found columns:Index(['_id', 'class', 'aa_000', 'ab_000', 'ac_000', 'ad_000', 'ae_000',
+       'af_000', 'ag_000', 'ag_001',
+       ...
+       'ee_002', 'ee_003', 'ee_004', 'ee_005', 'ee_006', 'ee_007', 'ee_008',
+       'ee_009', 'ef_000', 'eg_000'],
+      dtype='object', length=172)
+[2023-01-05 15:41:49,024] 16 root INFO dropping _id column
+[2023-01-05 15:41:49,231] 24 root INFO save data in feature store,replacing null values with nan
+[2023-01-05 15:41:49,773] 27 root INFO creating feature store folder if not available
+[2023-01-05 15:41:49,773] 31 root INFO save df to feature store folder
+[2023-01-05 15:41:52,225] 34 root INFO spliting data into train test split
+[2023-01-05 15:41:52,741] 37 root INFO creating dataset directory if not available
+[2023-01-05 15:41:52,742] 41 root INFO save df to feature store folder
+[2023-01-05 15:41:54,925] 46 root INFO preparing artifact
+[2023-01-05 15:41:54,926] 53 root INFO data ingestion artifact:DataIngestionArtifact(feature_store_file_path='/config/workspace/artifact/01052023__154145/data_ingestion/feature_store/sensor.csv', train_file_path='/config/workspace/artifact/01052023__154145/data_ingestion/dataset/train.csv', test_file_path='/config/workspace/artifact/01052023__154145/data_ingestion/dataset/test.csv')
+[2023-01-05 15:41:55,360] 20 root INFO exporting collection data as pandas dataframe
+[2023-01-05 15:41:55,360] 12 root INFO reading from databaseaps qand collection :sensor
+[2023-01-05 15:41:58,835] 14 root INFO found columns:Index(['_id', 'class', 'aa_000', 'ab_000', 'ac_000', 'ad_000', 'ae_000',
+       'af_000', 'ag_000', 'ag_001',
+       ...
+       'ee_002', 'ee_003', 'ee_004', 'ee_005', 'ee_006', 'ee_007', 'ee_008',
+       'ee_009', 'ef_000', 'eg_000'],
+      dtype='object', length=172)
+[2023-01-05 15:41:58,835] 16 root INFO dropping _id column
+[2023-01-05 15:41:59,027] 24 root INFO save data in feature store,replacing null values with nan
+[2023-01-05 15:41:59,563] 27 root INFO creating feature store folder if not available
+[2023-01-05 15:41:59,564] 31 root INFO save df to feature store folder
+[2023-01-05 15:42:02,064] 34 root INFO spliting data into train test split
+[2023-01-05 15:42:02,578] 37 root INFO creating dataset directory if not available
+[2023-01-05 15:42:02,578] 41 root INFO save df to feature store folder
+[2023-01-05 15:42:04,794] 46 root INFO preparing artifact
+[2023-01-05 15:42:04,794] 53 root INFO data ingestion artifact:DataIngestionArtifact(feature_store_file_path='/config/workspace/artifact/01052023__154145/data_ingestion/feature_store/sensor.csv', train_file_path='/config/workspace/artifact/01052023__154145/data_ingestion/dataset/train.csv', test_file_path='/config/workspace/artifact/01052023__154145/data_ingestion/dataset/test.csv')
+[2023-01-05 15:42:05,225] 16 root INFO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DATA VALIDATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[2023-01-05 15:42:05,225] 96 root INFO Reading base dataframe
+[2023-01-05 15:42:08,063] 99 root INFO rep;aced na values with nan
+[2023-01-05 15:42:08,064] 101 root INFO drop null values columns from base df
+[2023-01-05 15:42:09,009] 30 root INFO selecting column nane which containing null above 0.2
+[2023-01-05 15:42:09,009] 33 root INFO column names to drop['ab_000', 'ad_000', 'bk_000', 'bl_000', 'bm_000', 'bn_000', 'bo_000', 'bp_000', 'bq_000', 'br_000', 'cf_000', 'cg_000', 'ch_000', 'co_000', 'cr_000', 'ct_000', 'cu_000', 'cv_000', 'cx_000', 'cy_000', 'cz_000', 'da_000', 'db_000', 'dc_000']
+[2023-01-05 15:42:09,092] 104 root INFO reading train dataframe
+[2023-01-05 15:42:09,483] 106 root INFO reading test dataframe
+[2023-01-05 15:42:09,581] 109 root INFO dropping null vakluecolumns from  train df
+[2023-01-05 15:42:09,592] 30 root INFO selecting column nane which containing null above 0.2
+[2023-01-05 15:42:09,593] 33 root INFO column names to drop['ab_000', 'ad_000', 'bk_000', 'bl_000', 'bm_000', 'bn_000', 'bo_000', 'bp_000', 'bq_000', 'br_000', 'cf_000', 'cg_000', 'ch_000', 'co_000', 'cr_000', 'ct_000', 'cu_000', 'cv_000', 'cx_000', 'cy_000', 'cz_000', 'da_000', 'db_000', 'dc_000']
+[2023-01-05 15:42:09,601] 111 root INFO dropping missing value columns in test dataset
+[2023-01-05 15:42:09,607] 30 root INFO selecting column nane which containing null above 0.2
+[2023-01-05 15:42:09,607] 33 root INFO column names to drop['ab_000', 'ad_000', 'bk_000', 'bl_000', 'bm_000', 'bn_000', 'bo_000', 'bp_000', 'bq_000', 'br_000', 'cf_000', 'cg_000', 'ch_000', 'co_000', 'cr_000', 'ct_000', 'cu_000', 'cv_000', 'cx_000', 'cy_000', 'cz_000', 'da_000', 'db_000', 'dc_000']
+[2023-01-05 15:42:15,644] 122 root INFO is all required columns present in train df
