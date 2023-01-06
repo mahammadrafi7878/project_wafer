@@ -16,3 +16,4 @@ wincertstore==0.2
 xgboost==1.6.2
 pandas
 numpy
+scikit-learn
