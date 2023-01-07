@@ -60,6 +60,7 @@ class DataTransformation:
 
 
             smt=SMOTETomek(sampling_strategy="minority")
+            smt = SMOTETomek(random_state=42)
             logging.info("before resampling in training set input:{input_feature_train_arr.shape} and target :{target_feature_train_arr.shape}")
             input_feature_train_arr,target_feature_train_arr=smt.fit_resample(input_feature_train_arr,target_feature_train_arr)
             logging.info(f"after resampling training set input{input_feature_train_arr.shape} and target:{target_feature_train_arr.shape}")

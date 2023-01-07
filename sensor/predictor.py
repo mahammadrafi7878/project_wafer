@@ -95,8 +95,3 @@ class ModelResolver:
 
 
 
-
-class Predictor:
-
-    def __init__(self,model_resolver:ModelResolver):
-        self.model_resolver=model_resolver

@@ -32,7 +32,7 @@ class DataIngestion:
             df.to_csv(path_or_buf=self.data_ingestion_config.feature_store_file_path,index=False,header=True)
 
             logging.info("spliting data into train test split")
-            train_df,test_df=train_test_split(df,test_size=self.data_ingestion_config.test_size) 
+            train_df,test_df=train_test_split(df,test_size=self.data_ingestion_config.test_size,random_state=77) 
 
             logging.info('creating dataset directory if not available')
             dataset_dir=os.path.dirname(self.data_ingestion_config.train_file_path)
