@@ -17,3 +17,4 @@ xgboost==1.6.2
 pandas
 numpy
 scikit-learn
+apache-airflow
